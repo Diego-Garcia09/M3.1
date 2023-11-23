@@ -10,33 +10,22 @@
 import axios from 'axios'
 export default {
     methods: {
-        nav() {
-            this.$router.push('/about');
-        },
         async handleGoogleResponse(response) {
+            // Response es el token recibido por Google
             console.log(response.credential);
             try {
+                // Se envia el token al backend para su verificacion y generacion de token
                 const res = await axios.post('https://localhost:3000/login', {
                     token: response.credential,
                 });
                 console.log('Respuesta del backend:', res.data);
+                // Si el token esta verificado, se recibe el token generado mueve a otra ruta con el token
                 if (res.data.message == 'Verificado') {
-                    // this.nav();
-                    // console.log("Verificado");
-                    // console.log(res.data.token);
-                    const config = {
-                        headers: { Authorization: `Bearer ${res.data.token}` }
-                    };
-                    console.log(config);
-                    const contenidoProtegido = await axios.get('https://localhost:3000/protected',
-                    config);
-                    console.log(contenidoProtegido.data.message);
                     this.$router.push(`/inicio?token=${res.data.token}`);
                 }
                 else {
                     console.log("error");
                 }
-                // this.nav();
             } catch (error) {
                 console.error('Error al enviar el token al backend:', error);
             }
