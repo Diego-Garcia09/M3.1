@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "backenduser",
+    "password": "123456",
+    "database": "m3_1",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "backenduser",
+    "password": "123456",
+    "database": "m3_1_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "backenduser",
+    "password": "123456",
+    "database": "m3_1_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
